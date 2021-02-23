@@ -5,8 +5,8 @@ networks:
     driver: bridge 
 
 services:
-  mydockerapi:
-    image: double-v-partners:latest
+  doublevp:
+    image: double_v_partners_api:latest
     depends_on:
       - "postgres_image"
     build:
@@ -15,7 +15,7 @@ services:
     ports:
       - "3000:80"     
     environment:
-      DB_CONNECTION_STRING: "host=postgres_image;port=5432;database=double_v_partners;username=doubleVP;password=doubleVP"
+      DB_CONNECTION_STRING: "host=postgres_image;port=5432;database=double_v_partners;username=developer_double;password=pass_double"
     networks:
       - double-v-partners-dev  
   
@@ -28,10 +28,11 @@ services:
       - db_volume:/var/lib/postgresql/data
       - ./Database/seed.sql :/docker-entrypoint-initdb.d/seed.sql
     environment:
-      POSTGRES_USER: "doubleVP"
-      POSTGRES_PASSWORD: "doubleVP"
+      POSTGRES_USER: "developer_double"
+      POSTGRES_PASSWORD: "pass_double"
       POSTGRES_DB: "double_v_partners"
     networks:
       - double-v-partners-dev
+      
 volumes:
   db_volume:
