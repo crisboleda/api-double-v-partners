@@ -13,6 +13,8 @@ namespace double_v_partners.Data
         }
 
         public DbSet<StatusTicket> StatusTickets { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Ticket> Tickets { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -20,6 +22,8 @@ namespace double_v_partners.Data
             base.OnModelCreating(modelBuilder);
 
             new StatusTicketMap(modelBuilder.Entity<StatusTicket>());
+            new UserMap(modelBuilder.Entity<User>());
+            new TicketMap(modelBuilder.Entity<Ticket>());
         }
     }
 }
